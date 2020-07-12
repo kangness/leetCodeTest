@@ -1,8 +1,11 @@
-package main
+package tree
 
-import "fmt"
+import (
+	"container/list"
+)
 
 type BaseTree struct {
+	Hight int
 	Value interface{}
 	Left  *BaseTree
 	Right *BaseTree
@@ -12,6 +15,7 @@ type BaseTree struct {
 type BaseTreeManager struct {
 
 }
+
 // 前序遍历
 func (self *BaseTreeManager) DLR(node *BaseTree) []interface{} {
 	var result []interface{}
@@ -47,6 +51,7 @@ func (self *BaseTreeManager) LDR(node *BaseTree) []interface{} {
 	}
 	return result
 }
+// 后序遍历
 func (self *BaseTreeManager) LRD (node *BaseTree) []interface{} {
 	var result []interface{}
 	if node == nil {
@@ -63,6 +68,29 @@ func (self *BaseTreeManager) LRD (node *BaseTree) []interface{} {
 	}
 	return result
 }
+
+func (self *BaseTreeManager) CXB (node *BaseTree) []interface{} {
+	var result []interface{}
+	if node == nil {
+		return result
+	}
+	temp := list.New()
+	temp.PushBack(node)
+	for e := temp.Front(); e != nil; e = e.Next() {
+		t := e.Value.(*BaseTree)
+		if t.Value != nil {
+			result = append(result, t.Value)
+		}
+		if t.Left != nil {
+			temp.PushBack(t.Left)
+		}
+		if t.Right != nil {
+			temp.PushBack(t.Right)
+		}
+	}
+	return result
+}
+/*
 func main() {
 	manager := &BaseTreeManager{}
 	node := &BaseTree{
@@ -103,4 +131,6 @@ func main() {
 	fmt.Println(manager.DLR(node))
 	fmt.Println(manager.LDR(node))
 	fmt.Println(manager.LRD(node))
+	fmt.Println(manager.CXB(node))
 }
+ */
