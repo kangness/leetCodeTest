@@ -1,0 +1,33 @@
+package main
+
+import (
+	"math/rand"
+	"sync"
+	"time"
+)
+
+func main() {
+	var total int
+	var wg sync.WaitGroup
+	for i := gen(0); i < 20; i++ {
+		wg.Add(1)
+		go func(g gen) {
+			for j := 0; j < 1e7; j++ {
+				total += g.readNumber()
+			}
+			wg.Done()
+		}(i)
+	}
+	wg.Wait()
+}
+var generators [20]*rand.Rand
+func init() {
+	for i := int64(0); i < 20; i++  {
+		generators[i] = rand.New(rand.NewSource(i).Seed(int64(time.Now().UnixNano())))
+	}
+}
+type gen int
+//go:noinline
+func (g gen) readNumber() int {
+	return generators[int(g)].Intn(10)
+}

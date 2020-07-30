@@ -9,6 +9,7 @@ type BaseTree struct {
 	Value interface{}
 	Left  *BaseTree
 	Right *BaseTree
+	Color int
 }
 
 
@@ -16,6 +17,11 @@ type BaseTreeManager struct {
 
 }
 
+type BaseTreeInterface interface {
+	CreateNode(value interface{}, left, right *BaseTree) (*BaseTree)
+	GetHight(node *BaseTree) int
+
+}
 // 前序遍历
 func (self *BaseTreeManager) DLR(node *BaseTree) []interface{} {
 	var result []interface{}
