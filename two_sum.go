@@ -14,6 +14,7 @@ func twoSum(nums[]int, target int) []int {
     return []int{}
 }
 
+func
 func main() {
     nums := []int{3,2,4}
     target := 6

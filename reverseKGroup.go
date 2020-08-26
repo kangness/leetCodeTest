@@ -33,6 +33,19 @@ func create(num []int)  *ListNode {
 	return start
 }
 
+func reversePrint(head *ListNode) []int {
+	var tmp []int
+	for e := head; e != nil ; e = e.Next {
+		tmp = append(tmp, e.Val)
+	}
+	length := len(tmp)
+	var result []int
+	for i := length - 1 ; i >= 0 ; i -- {
+		result = append(result, tmp[i])
+	}
+	return result
+}
+
 func reverseKGroup(head *ListNode, n int) *ListNode {
     if head == nil || head.Next == nil {
         return head

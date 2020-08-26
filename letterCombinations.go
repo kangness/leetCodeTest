@@ -27,7 +27,6 @@ func letterCombinations(digits string) []string {
 		}
 	}
 	for e := l.Front(); e != nil ; e = e.Next() {
-		fmt.Println(e.Value.(string))
 		result = append(result, e.Value.(string))
 	}
 	return result
@@ -55,12 +54,12 @@ func letterCombinations2(digits string) []string {
 				temp = append(temp, s[j] + m[digits[i]][k])
 			}
 		}
-		fmt.Println("--------", temp)
 		s = temp
 	}
 	return s
 }
 func main() {
-	digits := "2345"
+	digits := "23"
 	fmt.Println(letterCombinations2(digits))
+	fmt.Println(letterCombinations(digits))
 }
