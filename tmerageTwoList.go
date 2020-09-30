@@ -84,6 +84,7 @@ func MergeTwoList2(l1, l2 *ListNode) *ListNode {
 	return start
 }
 
+func
 func main () {
 	v1 := []int{1,3,5,6,9}
 	v2 := []int{1,2,3,4,5,6,7,8,9}

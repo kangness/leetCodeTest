@@ -7,6 +7,12 @@ type ListNode struct {
 	Val int
 	Next *ListNode
 }
+
+func Show(node *ListNode) {
+	for e := node; e != nil; e = e.Next {
+		fmt.Print(e.Val)
+	}
+}
 //func addTwoNumbers(l1 , l2 *ListNode) *ListNode {
 func addTwoNumbers(num1,num2 []int) *ListNode {
 /*
@@ -64,8 +70,47 @@ func addTwoNumbers(num1,num2 []int) *ListNode {
 	return res
 }
 
+func Create(num []int)  *ListNode {
+	if len(num) <= 0 {
+		return nil
+	}
+	start := &ListNode{}
+	node := start
+	length := len(num)
+	for i, n := range num {
+		node.Next = &ListNode{}
+		node.Val = n
+		if i < length -1 {
+			node = node.Next
+		}
+	}
+	node.Next = nil
+	return start
+}
+
+
+func addTwoNumbers2(l1, l2 *ListNode) *ListNode {
+	result := &ListNode{}
+	tmp := 0
+	for {
+		t := 0
+		if l1 == nil && l2 == nil {
+			break
+		}
+		if l1 != nil {
+			t = l1.Val + t
+		}
+		if l2 != nil {
+			t = l2.Val + t
+		}
+		result.Val = t % 10 + tmp
+		tmp = t / 10
+	}
+	return nil
+}
 func main() {
    num1 := []int{2,4,3} 
    num2 := []int{5,6,4}
-   addTwoNumbers(num1,num2)   
+   fmt.Println(num1, num2)
+   Show(addTwoNumbers(num1,num2))
 }
