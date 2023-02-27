@@ -14,7 +14,7 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 		}
 	}
 	if cur != nil && cur.Next != nil{
-		cur.Next = cur.Next.
+		cur.Next = cur.Next
 	}
 	return nil
 }
